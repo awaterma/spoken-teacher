@@ -1,0 +1,18 @@
+{ "phrases" : [
+	{
+		"english" : "Hello, how are you?",
+		"spanish" : "Hola, como estás?"
+	},
+	{
+		"english" : "What a beautiful day!",
+		"spanish" : "Que linda día!"
+	},
+	{
+		"english" : "I just had a lovely trip",
+		"spanish" : "Ya llegué de una viaje marvelosa"
+	},
+	{
+		"english" : "I'm hungry, do you have any food?",
+		"spanish" : "Tengo hambre. Hay comida?"
+	}
+]}
