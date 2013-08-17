@@ -1,18 +1,38 @@
 { "phrases" : [
 	{
-		"english" : "Hello, how are you?",
-		"spanish" : "Hola, como estás?"
+		"english" : "Good morning mom",
+		"spanish" : "Buenos dias mama",
+        "tseltal" :  "bame ayat mé"
 	},
-	{
-		"english" : "What a beautiful day!",
-		"spanish" : "Que linda día!"
-	},
-	{
-		"english" : "I just had a lovely trip",
-		"spanish" : "Ya llegué de una viaje marvelosa"
-	},
-	{
-		"english" : "I'm hungry, do you have any food?",
-		"spanish" : "Tengo hambre. Hay comida?"
-	}
+    {
+        "english" : "Good morning Andy",
+        "spanish" : "Buenos días Andy",
+        "tseltal" : "bame ayat Andy"
+    },
+        {
+        "english" : "Are you ok?",
+        "spanish" : "¿Está bien?",
+        "tseltal" : "Lek ayon"
+    },
+        {
+        "english" : "No, I have a headache",
+        "spanish" : "No, tengo dolor de cabeza",
+        "tseltal" : "Yax tiwan jol"
+    },
+        {
+        "english" : "You should stay in bed!",
+        "spanish" : "Tu puedes dejar",
+        "tseltal" : "Bin max jilat ch'i"
+    },
+        {
+        "english" : "But that's impossible! I have lots of things to do!",
+        "spanish" : "Es imposible yo tengo que ir de compra",
+        "tseltal" : "joo yax van ta manbajel"
+    },
+        {
+        "english" : "You should take a nap",
+        "spanish" : "Tu si quieres costarme",
+        "tseltal" : "joon yax ban me ya kane"
+    }
 ]}
+
