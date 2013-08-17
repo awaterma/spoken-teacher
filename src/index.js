@@ -13,7 +13,7 @@ var counter = 0;
 var screen = blessed.screen();
 screen.smartCSR = true;
 
-var topbox = blessed.box({
+var spanishbox = blessed.box({
   top: '33%',
   left: 'center',
   width: '80%',
@@ -30,7 +30,7 @@ var topbox = blessed.box({
   }
 });
 
-var midbox = blessed.box({
+var tseltalbox = blessed.box({
   top: '66%',
   left: 'center',
   width: '80%',
@@ -48,7 +48,7 @@ var midbox = blessed.box({
 
 })
 
-var bottombox = blessed.box({  
+var gringobox = blessed.box({  
   top: '0',
   left: 'center',
   width: '80%',
@@ -70,12 +70,12 @@ function switchContent(c) {
   if (c > db.phrases.length - 1 || c < 0) {
     c = 0; counter = 0;
   } 
-  topbox.setContent('{center}' + db.phrases[c].spanish);
-  topbox.phrase = (db.phrases[c].spanish);
-  bottombox.setContent('{center}' + db.phrases[c].english);
-  bottombox.phrase = db.phrases[c].english;
-  midbox.setContent('{center}' + db.phrases[c].tseltal);
-  midbox.phrase = db.phrases[c].tseltal;
+  spanishbox.setContent('{center}' + db.phrases[c].spanish);
+  spanishbox.phrase = (db.phrases[c].spanish);
+  gringobox.setContent('{center}' + db.phrases[c].english);
+  gringobox.phrase = db.phrases[c].english;
+  tseltalbox.setContent('{center}' + db.phrases[c].tseltal);
+  tseltalbox.phrase = db.phrases[c].tseltal;
   screen.render();
 }
 
@@ -83,21 +83,21 @@ function switchContent(c) {
 switchContent(0);
 
 // Append our box to the screen.
-screen.append(topbox);
-screen.append(bottombox);
-screen.append(midbox);
+screen.append(spanishbox);
+screen.append(gringobox);
+screen.append(tseltalbox);
 
 // If our box is clicked, change the content.
-topbox.on('click', function(data) {
-  say.speak(spanishVoice,topbox.phrase);
+spanishbox.on('click', function(data) {
+  say.speak(spanishVoice,spanishbox.phrase);
 });
 
-bottombox.on('click', function(data) {
-  say.speak(englishVoice, bottombox.phrase);
+gringobox.on('click', function(data) {
+  say.speak(englishVoice, gringobox.phrase);
 });
 
-midbox.on('click', function(data) {
-  say.speak(tseltalVoice, midbox.phrase);
+tseltalbox.on('click', function(data) {
+  say.speak(tseltalVoice, tseltalbox.phrase);
 });
 
 screen.key(['space','right','return'], function(ch, key) {
@@ -116,7 +116,7 @@ screen.key(['escape', 'q', 'C-c'], function(ch, key) {
 });
 
 // Focus our element.
-topbox.focus();
+spanishbox.focus();
 
 // Render the screen.
 screen.render();
