@@ -1,122 +1,77 @@
-var blessed = require('blessed');
-var say = require('say');
-var fs = require('fs');
+var blessed = require('blessed'),
+  screen = blessed.screen(),
+  _ = require('underscore'),
+  say = require('say'),
+  fs = require('fs');
 
-var englishVoice = 'Samantha';
-var spanishVoice = 'Paulina';
-var tseltalVoice = 'Paulina';
+function init() {
+  var voices = ['Samantha','Paulina','Paulina'],
+  languages = ['english','spanish','tseltal'],
+  story = JSON.parse(fs.readFileSync('src/resources/phrases.json', 'utf8')),
+  counter = 0, boxes = [];
 
-/* Load the phrases file into memory */
-var db = JSON.parse(fs.readFileSync('src/resources/phrases.json', 'utf8'));
-var counter = 0;
-
-var screen = blessed.screen();
-screen.smartCSR = true;
-
-var spanishbox = blessed.box({
-  top: '33%',
-  left: 'center',
-  width: '80%',
-  height: '33%',
-  border: {
-    type: 'line',
-    fg: '#ffffff'
-  },
-  fg: 'red',
-  bg: 'yellow',
-  tags: true,
-  hoverEffects: {
-    bg: 'green'
-  }
-});
-
-var tseltalbox = blessed.box({
-  top: '66%',
-  left: 'center',
-  width: '80%',
-  height: '33%',
-  border: {
-    type: 'line',
-    fg: '#ffffff'
-  },
-  fg: 'white',
-  bg: 'black',
-  tags: true,
-  hoverEffects: {
-    bg: 'blue'
+  function createBox(top, foreground, background, hover) {
+    return blessed.box({
+      top: top,
+      left: 'center',
+      width: '80%',
+      height: '33%',
+      border: {
+        type: 'line',
+        fg: '#ffffff'
+      },
+      fg: foreground,
+      bg: background,
+      tags: true,
+      hoverEffects: {
+        bg: hover 
+      }
+    });
   }
 
-})
+  boxes.push(createBox('0%','red','blue','white'));
+  boxes.push(createBox('33%','red','yellow','black'));
+  boxes.push(createBox('66%','white','magenta','green'));
+  _.each(boxes, function(box) {
+    screen.append(box);
+  });
 
-var gringobox = blessed.box({  
-  top: '0',
-  left: 'center',
-  width: '80%',
-  height: '33%',
-  border: {
-    type: 'line',
-    fg: '#ffffff'
-  },
-  fg: 'white',
-  bg: 'red',
-  tags: true,
-  hoverEffects: {
-    bg: 'blue'
+  function switchContent(c) {
+    if (c > story.phrases.length - 1 || c < 0) {
+      c = 0; counter = 0;
+    }
+    _.each(boxes,function(element, index) {
+      element.setContent('{center}' + story.phrases[c][index]);
+      element.phrase = (story.phrases[c][index]);
+    });
+    screen.render();
   }
 
-})
+  _.each(boxes,function(box, index) {
+    box.on('click', function(data) {
+      say.speak(voices[index],boxes[index].phrase);
+    });
+  });
 
-function switchContent(c) {
-  if (c > db.phrases.length - 1 || c < 0) {
-    c = 0; counter = 0;
-  } 
-  spanishbox.setContent('{center}' + db.phrases[c].spanish);
-  spanishbox.phrase = (db.phrases[c].spanish);
-  gringobox.setContent('{center}' + db.phrases[c].english);
-  gringobox.phrase = db.phrases[c].english;
-  tseltalbox.setContent('{center}' + db.phrases[c].tseltal);
-  tseltalbox.phrase = db.phrases[c].tseltal;
-  screen.render();
+  screen.key(['space','right','return'], function(ch, key) {
+    switchContent(++counter);
+    screen.render();
+  });
+
+  screen.key(['left'], function(ch, key) {
+    switchContent(--counter);
+    screen.render();
+  });
+
+  // Quit on Escape, q, or Control-C.
+  screen.key(['escape', 'q', 'C-c'], function(ch, key) {
+    return process.exit(0);
+  });
+
+  // Focus our element.
+  boxes[0].focus();
+  switchContent(0);
 }
 
-/* Initialize conent */
-switchContent(0);
-
-// Append our box to the screen.
-screen.append(spanishbox);
-screen.append(gringobox);
-screen.append(tseltalbox);
-
-// If our box is clicked, change the content.
-spanishbox.on('click', function(data) {
-  say.speak(spanishVoice,spanishbox.phrase);
-});
-
-gringobox.on('click', function(data) {
-  say.speak(englishVoice, gringobox.phrase);
-});
-
-tseltalbox.on('click', function(data) {
-  say.speak(tseltalVoice, tseltalbox.phrase);
-});
-
-screen.key(['space','right','return'], function(ch, key) {
-  switchContent(++counter);
-  screen.render();
-})
-
-screen.key(['left'], function(ch, key) {
-  switchContent(--counter);
-  screen.render();
-})
-
-// Quit on Escape, q, or Control-C.
-screen.key(['escape', 'q', 'C-c'], function(ch, key) {
-  return process.exit(0);
-});
-
-// Focus our element.
-spanishbox.focus();
-
-// Render the screen.
+init();
 screen.render();

@@ -1,38 +1,36 @@
 { "phrases" : [
-	{
-		"english" : "Good morning mom",
-		"spanish" : "Buenos dias mama",
-        "tseltal" :  "bame ayat mé"
-	},
-    {
-        "english" : "Good morning Andy",
-        "spanish" : "Buenos días Andy",
-        "tseltal" : "bame ayat Andy"
-    },
-        {
-        "english" : "Are you ok?",
-        "spanish" : "¿Está bien?",
-        "tseltal" : "Lek ayon"
-    },
-        {
-        "english" : "No, I have a headache",
-        "spanish" : "No, tengo dolor de cabeza",
-        "tseltal" : "Yax tiwan jol"
-    },
-        {
-        "english" : "You should stay in bed!",
-        "spanish" : "Tu puedes dejar",
-        "tseltal" : "Bin max jilat ch'i"
-    },
-        {
-        "english" : "But that's impossible! I have lots of things to do!",
-        "spanish" : "Es imposible yo tengo que ir de compra",
-        "tseltal" : "joo yax van ta manbajel"
-    },
-        {
-        "english" : "You should take a nap",
-        "spanish" : "Tu si quieres costarme",
-        "tseltal" : "joon yax ban me ya kane"
-    }
+  [
+    "Good morning mom",
+    "Buenos dias mama",
+    "bame ayat me"
+  ],
+  [
+    "Good morning Andy",
+    "Buenos dias Andy",
+    "bame ayat Andy"
+  ],
+  [
+    "Are you ok?","¿Está bien?","Lek ayon"
+  ],
+  [
+    "No, I have a headache",
+    "No, tengo dolor de cabeza",
+    "Yax tiwan jol"
+  ],
+  [
+    "You should stay in bed!",
+    "Tu puedes dejar",
+    "Bin max jilat ch'i"
+  ],
+  [
+    "But that's impossible! I have lots of things to do!",
+    "Es imposible yo tengo que ir de compra",
+    "joo yax van ta manbajel"
+  ],
+  [
+    "You should take a nap",
+    "Tu si quieres costarme",
+    "joon yax ban me ya kane"
+  ]
 ]}
 
