@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "node lib/index.js"
   },
   "dependencies": {
     "blessed": "0.0.18",
